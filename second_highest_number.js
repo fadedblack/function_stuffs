@@ -1,7 +1,11 @@
 const getWinnerRunnerUp = function ([secondHighest, highest], element) {
-  if (element >= highest) {
+  if (element > highest) {
     secondHighest = highest;
     highest = element;
+  }
+
+  if (element > secondHighest && element !== highest) {
+    secondHighest = element;
   }
 
   return [secondHighest, highest];
@@ -18,3 +22,10 @@ const secondHighest = function (array) {
 
   return array[0];
 };
+
+// console.log(secondHighest([1, 2, 3, 4]));
+// console.log(secondHighest([1, 2, 4, 4]));
+// console.log(secondHighest([4,3,2,1]));
+
+// Edge Case
+// console.log(secondHighest([4, 4, 4, 4]));
