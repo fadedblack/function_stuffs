@@ -1,14 +1,14 @@
-const getWinnerRunnerUp = function ([secondHighest, highest], element) {
+const getWinnerRunnerUp = function ([highest, secondHighest], element) {
   if (element > highest) {
     secondHighest = highest;
     highest = element;
   }
 
-  if (element > secondHighest && element !== highest) {
+  if (element > secondHighest && element !== highest) { // do with difference
     secondHighest = element;
   }
 
-  return [secondHighest, highest];
+  return [highest, secondHighest];
 };
 
 const validArray = function (array) {
@@ -17,15 +17,17 @@ const validArray = function (array) {
 
 const secondHighest = function (array) {
   if (validArray(array)) {
-    return array.reduce(getWinnerRunnerUp, [-Infinity, -Infinity])[0];
+    return array.reduce(getWinnerRunnerUp, [-Infinity, -Infinity])[1];
   }
 
   return array[0];
 };
 
-// console.log(secondHighest([1, 2, 3, 4]));
-// console.log(secondHighest([1, 2, 4, 4]));
-// console.log(secondHighest([4,3,2,1]));
+console.log(secondHighest([1, 2, 3, 4]));
+console.log(secondHighest([1, 2, 4, 4]));
+console.log(secondHighest([4,3,2,1]));
 
-// Edge Case
-// console.log(secondHighest([4, 4, 4, 4]));
+// Edge Cases
+console.log(secondHighest([4]));
+console.log(secondHighest([4, 4, 4, 4]));
+console.log(secondHighest([-1,-2,-3]));
