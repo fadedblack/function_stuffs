@@ -1,19 +1,9 @@
-const validSecondHighest = function (element, highest, secondHighest) {
-  return element > secondHighest && element !== highest;
-};
-
 const getWinnerRunnerUp = function ([highest, secondHighest], element) {
-  if (element > highest) {
-    [secondHighest, highest] = [highest, element];
-    // return [highest, secondHighest];
+  if (element < secondHighest) {
+    return [highest, secondHighest];
   }
 
-  if (validSecondHighest(element, highest, secondHighest)) {
-    secondHighest = element;
-  }
-
-  return [highest, secondHighest];
-  // return [secondHighest, highest];
+  return [Math.max(highest, element), Math.min(highest, element)];
 };
 
 const validArray = function (array) {
